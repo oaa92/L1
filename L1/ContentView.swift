@@ -1,21 +1,34 @@
-//
-//  ContentView.swift
-//  L1
-//
-//  Created by Anatoliy Odinetskiy on 02.03.2024.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+
+    @State var rectangleHeight: CGFloat = 50
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            ZStack(alignment: .bottom) {
+                ScrollView {
+                    ForEach(1..<101) { index in
+                        Text("\(index)")
+                            .frame(maxWidth: .infinity)
+                    }
+                }
+                .contentMargins(
+                    .all,
+                    EdgeInsets(top: 0, leading: 0, bottom: rectangleHeight, trailing: 0),
+                    for: .automatic
+                )
+
+                Color
+                    .red
+                    .opacity(0.5)
+                    .frame(width: .infinity, height: rectangleHeight)
+            }
+
+            .tabItem {
+                Label("First", systemImage:"list.dash")
+            }
         }
-        .padding()
     }
 }
 
